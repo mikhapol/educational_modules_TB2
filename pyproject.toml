@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "educational-modules-tb2"
+version = "0.1.0"
+description = ""
+authors = ["mikhapol_linux <mikhapol@bk.ru>"]
+readme = "README.md"
+packages = [{include = "educational_modules_tb2"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django = "^4.2.6"
+psycopg2-binary = "^2.9.9"
+python-dotenv = "^1.0.0"
+djangorestframework = "^3.14.0"
+djangorestframework-simplejwt = "^5.3.0"
+coverage = "^7.3.2"
+drf-yasg = "^1.21.7"
+django-cors-headers = "^4.2.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
