@@ -12,7 +12,6 @@ class EducationListAPIView(generics.ListAPIView):
 class EducationCreateAPIView(generics.CreateAPIView):
     """View для создания образовательного модуля"""
     serializer_class = EducationSerializer
-    queryset = Education.objects.all()
 
 
 class EducationRetrieveAPIView(generics.RetrieveAPIView):
