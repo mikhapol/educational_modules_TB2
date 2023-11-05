@@ -1,7 +1,20 @@
 # Образовательные модули "ТВ2"
 
+>docker compose build - Сборка проекта  
+docker compose up - Запуск проекта
 
-Краткое описание: Django-приложение “Образовательные модули” 	
+Дополнительные команды:  
+- sudo systemctl start docker - запуск докера из терминала  
+- sudo systemctl status docker - проверка статуса запуска докера  
+- docker images - выводит список созданных образов  
+- docker rmi -f $(docker images -aq) - удаление всех созданных образов  
+- docker ps -а - Посмотреть все контейнеры  
+
+Для запуска проекта локально, необходимо перейти в браузер по ссылке:  
+http://localhost:8001  
+Так как в [docker-compose.yml](docker-compose.yml) прописан порт 8001 (37 строчка).
+
+>Краткое описание: Django-приложение “Образовательные модули” 	
 Направление: Backend  
 Тэги: FBV/CBV, Git, MVT/MTV, ORM,PEP8, PostgreSQL, Readme, Serialiers, Swagger, Tests, Viewset/Generic
 
