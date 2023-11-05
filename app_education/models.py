@@ -1,8 +1,9 @@
 from django.conf import settings
 from django.db import models
 
+NULLABLE = {'blank': True, 'null': True}
+NOT_NULLABLE = {'blank': False, 'null': False}
 
-# Create your models here.
 
 class Education(models.Model):
     """Поля модели образовательных модулей"""
@@ -11,12 +12,12 @@ class Education(models.Model):
     title = models.CharField(verbose_name='название', max_length=50)
     desc = models.TextField(verbose_name='описание')
 
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='Пользователь')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='Пользователь',
+                             **NULLABLE)
 
     def __str__(self):
         return f'{self.title}'
 
     class Meta:
-        managed = False
         verbose_name = 'Образовательный модуль'
         verbose_name_plural = 'Образовательные модули'
