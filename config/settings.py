@@ -99,9 +99,9 @@ DATABASES = {
     'default': {
         'ENGINE': get_env_value('POSTGRES_ENGINE'),
         # 'NAME': get_env_value('POSTGRES_NAME'),
-        'NAME': 'postgres',
+        'NAME': 'postgres',                         # Для сборки контейнера
         # 'HOST': get_env_value('POSTGRES_HOST'),
-        'HOST': 'db',
+        'HOST': 'db',                               # Для сборки контейнера
         'USER': get_env_value('POSTGRES_USER'),
         'PASSWORD': get_env_value('POSTGRES_PASSWORD'),
         'PORT': get_env_value('POSTGRES_PORT')

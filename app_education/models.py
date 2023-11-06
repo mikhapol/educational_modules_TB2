@@ -1,8 +1,7 @@
 from django.conf import settings
 from django.db import models
 
-NULLABLE = {'blank': True, 'null': True}
-NOT_NULLABLE = {'blank': False, 'null': False}
+from users.models import NULLABLE
 
 
 class Education(models.Model):
