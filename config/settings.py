@@ -65,11 +65,13 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
+    'django.middleware.common.CommonMiddleware',  # обязательно для 'corsheaders'
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'corsheaders.middleware.CorsMiddleware',  # обязательно для 'corsheaders'
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -98,10 +100,10 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': get_env_value('POSTGRES_ENGINE'),
-        # 'NAME': get_env_value('POSTGRES_NAME'),
-        'NAME': 'postgres',                         # Для сборки контейнера
-        # 'HOST': get_env_value('POSTGRES_HOST'),
-        'HOST': 'db',                               # Для сборки контейнера
+        'NAME': get_env_value('POSTGRES_NAME'),
+        # 'NAME': 'postgres',                         # Для сборки контейнера
+        'HOST': get_env_value('POSTGRES_HOST'),
+        # 'HOST': 'db',                               # Для сборки контейнера
         'USER': get_env_value('POSTGRES_USER'),
         'PASSWORD': get_env_value('POSTGRES_PASSWORD'),
         'PORT': get_env_value('POSTGRES_PORT')
@@ -163,3 +165,19 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1)
 }
+
+# Настройки для Celery
+CELERY_BROKER_URL = "redis://redis:6379/0"
+CELERY_RESULT_BACKEND = "redis://redis:6379/0"
+
+CELERY_BEAT_SCHEDULE = {
+    'task-name': {
+        'task': 'app_education.tasks.send_mail_message',  # Путь к задаче
+        'schedule': timedelta(minutes=10),  # Расписание выполнения задачи (например, каждые 10 минут)
+    },
+}
+
+CORS_ALLOWED_ORIGINS = [
+    "https://read-only.example.com",
+    "https://read-and-write.example.com",
+]
