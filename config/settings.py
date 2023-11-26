@@ -177,15 +177,15 @@ CELERY_RESULT_BACKEND = "redis://redis:6379/0"
 
 CELERY_BEAT_SCHEDULE = {
     'task-name': {
-        'task': 'users.tasks.send_mail_birthday',  # Путь к задаче
-        'schedule': timedelta(minutes=10),  # Расписание выполнения задачи (например, каждые 10 минут)
+        'task': 'users.tasks.check_birthday',  # Путь к задаче
+        'schedule': timedelta(days=1),  # Расписание выполнения задачи (например, каждые 10 минут)
     },
 }
 
 CORS_ALLOWED_ORIGINS = [
-    "https://read-only.example.com",
-    "https://read-and-write.example.com",
+    'http://localhost:8000',  # Замените на адрес вашего фронтенд-сервера
 ]
+CORS_ALLOW_ALL_ORIGINS = False
 
 EMAIL_HOST = get_env_value('EMAIL_HOST')
 EMAIL_PORT = get_env_value('EMAIL_PORT')
